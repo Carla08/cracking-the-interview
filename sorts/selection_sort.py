@@ -1,0 +1,12 @@
+
+def selectionsort(arr):
+    for i in range(len(arr)):
+        min_index = i
+        for j in range(i, len(arr)):
+            min_index = j if arr[j] < arr[min_index]else min_index
+        arr[i], arr[min_index] = arr[min_index], arr[i]
+    print(arr)
+
+# test arr
+arr = [10,9,8,7,6,2,4,5]
+selectionsort(arr)
