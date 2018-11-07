@@ -7,8 +7,4 @@ def insertionsort(arr):
             i -= 1
         arr[i + 1] = key
 
-    print(arr)
-
-# test arr
-arr = [10,9,8,7,6,2,4,5]
-insertionsort(arr)
+    return arr

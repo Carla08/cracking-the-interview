@@ -8,7 +8,7 @@ def heapsort(arr):
         last -= 1
         _max_heapify(arr, 0, last)
 
-    print(arr)
+    return arr
 
 def _max_heapify(arr, i, last):
     left = (2*i)+1
@@ -34,8 +34,3 @@ def _build_max_heap(arr):
     heap_size = len(arr) - 1
     for i in range(heap_size//2, 0, -1):
         _max_heapify(arr, i, heap_size)
-
-
-# test arr
-arr = [10,9,8,7,6,2,4,5]
-heapsort(arr)

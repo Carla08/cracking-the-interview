@@ -8,7 +8,7 @@ def mergesort(arr):
         mergesort(left)
         mergesort(right)
         merge(arr, left, right)
-        print(arr)
+        return arr
 
 
 def merge(arr, left, right):
@@ -22,8 +22,3 @@ def merge(arr, left, right):
             else:
                 arr[k] = right[j]
                 j += 1
-
-
-# test arr
-arr = [10,9,8,7,6,2,4,5]
-mergesort(arr)
