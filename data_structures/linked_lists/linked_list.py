@@ -1,6 +1,7 @@
 class LinkedList:
     def __init__(self, head):
         self._head = head
+        self._pointers_dict = {}
 
     @property
     def head(self):
@@ -9,6 +10,10 @@ class LinkedList:
     @head.setter
     def head(self, head):
         self._head = head
+
+    @property
+    def pointers_dict(self):
+        return self._pointers_dict
 
     def insert(self, node):
         n = self.get_last_node()
@@ -38,11 +43,33 @@ class LinkedList:
                 n = n.nxt
             raise ValueError(f'Node with value {value} not found in list')
 
+    def get_nth_node(self, n):
+        node = self.head
+        for i in range(1,n):
+            node = node.nxt
+        return node
+
     def get_last_node(self):
         n = self.head
         while n.nxt:
             n = n.nxt
         return n
+
+    def set_pointer(self, pointer_name, position=None):
+        if position:
+            self._pointers_dict[pointer_name] = self.get_nth_node(position)
+        else:
+            self._pointers_dict[pointer_name] = self.head
+
+    def get_pointer(self, pointer_name):
+        return self._pointers_dict[pointer_name]
+
+    def update_pointer(self, pointer_name, node=None):
+        current_node = self._pointers_dict[pointer_name]
+        if not node:
+            self.pointers_dict[pointer_name] = current_node.nxt
+        else:
+            self._pointers_dict[pointer_name] = node
 
     def __repr__(self):
         n = self.head
@@ -53,8 +80,8 @@ class LinkedList:
         s += f'{n.value}'
         return s
 
-    def __iter__(self):
-        self.n = self.head
+    def __iter__(self, ith_node=None):
+        self.n = ith_node if ith_node else self.head
         return self
 
     def __next__(self):
@@ -64,3 +91,13 @@ class LinkedList:
             val = self.n.value
             self.n = self.n.nxt
             return val
+
+    def __len__(self):
+        n = self.head
+        counter = 0
+        while n:
+            counter += 1
+            n = n.nxt
+        return counter
+
+

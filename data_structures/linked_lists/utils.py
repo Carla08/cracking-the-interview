@@ -6,3 +6,9 @@ def create_linked_list_with_list_of_values(values):
     for value in values[1:]:
         linked_list.insert(Node(value))
     return linked_list
+
+def create_linked_list_with_list_of_nodes(nodes):
+    linked_list = LinkedList(nodes[0])  # head
+    for node in nodes[1:]:
+        linked_list.insert(node)
+    return linked_list

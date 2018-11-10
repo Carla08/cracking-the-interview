@@ -21,3 +21,14 @@ class Node:
 
     def __repr__(self):
         return str(self.value)
+
+    def __eq__(self, other):
+        if not isinstance(other, Node):
+            print(f'{str(other)} not Node')
+            return False
+        else:
+            return True if other.value == self.value else False
+
+    def __hash__(self):
+        # until I find a better hash
+        return self.value

@@ -41,3 +41,18 @@ class TestLinkedList(unittest.TestCase):
         numbers = [1,2,3,4]
         for val, num in zip(self.linked_list, numbers):
             assert_that(val).is_equal_to(num)
+
+    def test_length(self):
+        self.linked_list.insert(Node(2))
+        self.linked_list.insert(Node(3))
+        self.linked_list.insert(Node(4))
+        self.linked_list.insert(Node(5))
+        self.linked_list.insert(Node(6))
+        assert_that(6).is_equal_to(len(self.linked_list))
+
+    def test_get_nth_node(self):
+        nth = 3
+        self.linked_list.insert(Node(2))
+        self.linked_list.insert(Node(3))
+        self.linked_list.insert(Node(4))
+        assert_that(nth).is_equal_to(self.linked_list.get_nth_node(nth).value)
