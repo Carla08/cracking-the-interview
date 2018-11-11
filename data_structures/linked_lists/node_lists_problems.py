@@ -1,4 +1,5 @@
 from typing import List
+from data_structures.linked_lists.linked_list import LinkedList
 
 def reverse_linked_list(lst):
     n = lst.head
@@ -59,7 +60,10 @@ def find_list_circular_node(lst):
             lst.update_pointer('quick', 2)
         return lst.get_pointer('slow')  # or quick, since they're equal.
     except IndexError:
-        return False # not a circular list.
+        return False  # not a circular list.
+
+
+
 
 
 
