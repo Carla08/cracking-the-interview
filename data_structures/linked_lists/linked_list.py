@@ -64,11 +64,16 @@ class LinkedList:
     def get_pointer(self, pointer_name):
         return self._pointers_dict[pointer_name]
 
-    def update_pointer(self, pointer_name, node=None):
-        current_node = self._pointers_dict[pointer_name]
-        if not node:
-            self.pointers_dict[pointer_name] = current_node.nxt
+    def update_pointer(self, pointer_name, steps=None):
+        node = self._pointers_dict[pointer_name]
+        if not steps:
+            self.pointers_dict[pointer_name] = node.nxt
         else:
+            for i in range(steps):
+                if not node:
+                    raise IndexError('End of list')
+                else:
+                    node = node.nxt
             self._pointers_dict[pointer_name] = node
 
     def __repr__(self):

@@ -13,7 +13,7 @@ def reverse_linked_list(lst):
     lst.head.nxt = None
     lst.head = _prev
     return lst
-
+####################################################################################################
 def find_intersection_of_linked_lists(lst_of_lsts: List['LinkedList']):
     # get the shortest list
     shortest_len = min(len(lst) for lst in lst_of_lsts)
@@ -41,9 +41,25 @@ def get_all_lst_nodes(lst_of_lsts):
     return nodes
 
 def check_all_nodes_equal(lst):
-    return True if len(set(lst)) == 1 else False
+    return len(set(lst)) == 1
 
+####################################################################################################
 
+def find_list_circular_node(lst):
+    # set quick n slow pointers
+    lst.set_pointer('quick')
+    lst.set_pointer('slow')
+
+    #advance quick pointer.
+    lst.update_pointer('quick', 2)
+
+    try:
+        while not lst.get_pointer('slow') == lst.get_pointer('quick'):
+            lst.update_pointer('slow')
+            lst.update_pointer('quick', 2)
+        return lst.get_pointer('slow')  # or quick, since they're equal.
+    except IndexError:
+        return False # not a circular list.
 
 
 
