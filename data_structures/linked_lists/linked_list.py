@@ -1,5 +1,5 @@
 class LinkedList:
-    def __init__(self, head):
+    def __init__(self, head=None):
         self._head = head
         self._pointers_dict = {}
 
@@ -30,7 +30,8 @@ class LinkedList:
     def remove(self, value):
         n = self.head
         if n.value == value:
-            return n
+            self._head = n.nxt
+            return True
         else:
             while n.nxt:
                 if n.nxt.value == value:
@@ -78,6 +79,8 @@ class LinkedList:
 
     def __repr__(self):
         n = self.head
+        if not n:
+            return "Empty Linked List"
         s = ''
         while n.nxt:
             s += f'{n.value}, '
