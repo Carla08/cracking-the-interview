@@ -44,11 +44,17 @@ traversal algorithm.
 As the name says Binary Search Trees provide the ability to perform a *binary search* in
 *O(log n)*
 
-**Tips for solving problems**
+**AVL Trees**
 
-1. Use multiple pointers. For example for keeping track of the past, 
-for foreseeing the future or one slow and one quicker. If you're using a lot 
-of them you can try to keep them labeled in a hashmap.
+AVL Trees are a subtype of self-balanced binary search tree. 
+The Balance factor in a binary tree the balance factor of a node N is defined to be the height 
+difference
 
-2. Magic methods that are useful: length, next, iter. For nodes implement equals and
-hash. Implement repr for both.
+BalanceFactor(N) := Height(RightSubtree(N)) – Height(LeftSubtree(N))
+of its two child subtrees.
+ 
+A binary tree is defined to be an AVL tree if the invariant
+BalanceFactor(N) in range (-1,+1) holds for every node N in the tree.
+A node N with BalanceFactor(N) < 0 is called "left-heavy", 
+one with BalanceFactor(N) > 0 is called "right-heavy", 
+and one with BalanceFactor(N) = 0 is sometimes simply called "balanced".

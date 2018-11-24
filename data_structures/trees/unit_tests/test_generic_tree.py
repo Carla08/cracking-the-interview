@@ -1,6 +1,6 @@
 import unittest
 from data_structures.trees.tree import Tree
-from data_structures.trees.tree_node import Node
+from data_structures.trees.binary_tree_node import Node
 
 class TestGenericTree(unittest.TestCase):
     def setUp(self):

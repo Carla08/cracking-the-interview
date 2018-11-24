@@ -32,11 +32,13 @@ class Node:
         return str(self.value)
 
     def __eq__(self, other):
-        if not isinstance(other, Node):
-            print(f'{str(other)} not Node')
+        if isinstance(other, int):
+            return other == self.value
+        elif not isinstance(other, Node):
+            print(f'{str(other)} not Node or Int')
             return False
         else:
-            return True if other.value == self.value else False
+            return other.value == self.value
 
     def __hash__(self):
         # until I find a better hash

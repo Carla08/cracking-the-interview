@@ -1,7 +1,7 @@
 import unittest
 from assertpy import assert_that
 from data_structures.trees.binary_search_tree import BinarySearchTree
-from data_structures.trees.tree_node import Node
+from data_structures.trees.binary_tree_node import Node
 from data_structures.trees.tree_traversals import inorder
 
 class TestTreeTraversals(unittest.TestCase):
