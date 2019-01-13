@@ -1,5 +1,5 @@
 import unittest
-from recursion.basic import flatten_lists, print_folder_content
+from recursion.basic import flatten_lists, print_folder_content, david_staircase, find_magic_index
 from assertpy import assert_that
 
 class TestBasicRecursion(unittest.TestCase):
@@ -15,6 +15,13 @@ class TestBasicRecursion(unittest.TestCase):
     def test_print_folder_content(self):
         root_dir = _get_test_directories()
         print_folder_content(root_dir,'')
+
+    def test_david_staircase(self):
+        assert_that(david_staircase(5)).is_equal_to(13)
+
+    def test_find_magic_index(self):
+        lst = [-1, 0, 1, 3, 5, 6, 10, 11, 12, 13]
+        assert_that(find_magic_index(lst, 0, len(lst) - 1)).is_equal_to(3)
 
 # helper classes
 class Directory:
