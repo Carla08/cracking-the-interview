@@ -8,11 +8,13 @@ def flatten_lists(lst, flattened: List):
             flatten_lists(_lst, flattened)
     return flattened
 
+
 def print_folder_content(directory, tab_str):
     print(tab_str + str(directory))
     tab_str += '    '
     for dirs in directory.content:
         print_folder_content(dirs, tab_str)
+
 
 def david_staircase(steps):
     if steps == 1:
@@ -38,4 +40,8 @@ def find_magic_index(lst, start, end):
             return find_magic_index(lst, mid + 1, end)
         elif n > mid:
             return find_magic_index(lst, start, mid - 1)
+
+
+
+
 
