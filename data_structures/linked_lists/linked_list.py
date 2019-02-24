@@ -38,7 +38,7 @@ class LinkedList:
                     if n.nxt.nxt:
                         n.nxt = n.nxt.nxt
                     else:
-                        # removal is last or head
+                        # removal is last
                         n.nxt = None
                     return True
                 n = n.nxt

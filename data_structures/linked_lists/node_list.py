@@ -31,4 +31,5 @@ class Node:
 
     def __hash__(self):
         # until I find a better hash
+        # Guess I never did.
         return self.value

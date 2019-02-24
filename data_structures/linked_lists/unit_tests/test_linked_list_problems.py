@@ -2,7 +2,7 @@ from assertpy import assert_that
 from data_structures.linked_lists.utils import create_linked_list_with_list_of_values, \
     create_linked_list_with_list_of_nodes
 from data_structures.linked_lists.node_lists_problems import reverse_linked_list, \
-    find_intersection_of_linked_lists, find_list_circular_node
+    find_intersection_of_linked_lists, find_list_circular_node, remove_nth_from_end
 from data_structures.linked_lists.node_list import Node
 import unittest
 
@@ -27,6 +27,13 @@ class TestLinkedListProblems(unittest.TestCase):
         circular_lst = self._get_circular_lst()
         circular_node = find_list_circular_node(circular_lst)
         assert_that(1000).is_equal_to(circular_node.value)
+
+    def test_remove_nth_from_end(self):
+        expected_lst_vals = [1,2,3,5]
+        new_node = remove_nth_from_end(self.lst.head, 2)
+        for i in range(4):
+            assert_that(new_node.value).is_equal_to(expected_lst_vals[i])
+            new_node = new_node.nxt
 
     def _get_multiple_intersected_lists(self):
         common_node = Node(1000)

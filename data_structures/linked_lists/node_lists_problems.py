@@ -62,6 +62,38 @@ def find_list_circular_node(lst):
     except IndexError:
         return False  # not a circular list.
 
+####################################################################################################
+
+def remove_nth_from_end(head, n: int):
+    """
+    Given a linked list, remove the n-th node from the end of list and return its head.
+    """
+    nth_map = {}
+
+    # go through the list and count the nodes
+    node = head
+    i = 1
+    while node:
+        nth_map[i] = node
+        node = node.nxt
+        i += 1
+
+    # the nth from the end
+    nth_from_end = i - n
+    node_to_remove = nth_map[nth_from_end]
+    node_before = nth_map[nth_from_end - 1]
+
+    # remove - case 1: node is head.
+    if node_to_remove == head:
+        head = node
+    # remove - case 2: node is end.
+    elif node_to_remove.nxt == None:
+        node_before.nxt = None
+    # remove - case 3: node in the middle of list
+    else:
+        node_before.nxt = node_to_remove.nxt
+
+    return head
 
 
 
