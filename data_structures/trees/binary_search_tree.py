@@ -119,3 +119,17 @@ class BinarySearchTree(Tree):
 
         return node
 
+    def to_max_heap(self, node):
+        # on a binary tree the max val is always on the bottom most right most leaf.
+        # the order would be:
+        # right, visit, left
+        # kind of a weird inorder.
+        if node:
+            yield from self.to_max_heap(node.right)
+            yield node
+            yield from self.to_max_heap(node.left)
+
+
+
+
+

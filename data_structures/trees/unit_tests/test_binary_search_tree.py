@@ -35,6 +35,11 @@ class TestTreeTraversals(unittest.TestCase):
         for i, node in enumerate(inorder(self.root)):
             assert_that(inorder_order[i]).is_equal_to(node.value)
 
+    def test_to_max_heap(self):
+        max_heap = [7, 6, 5, 4, 3, 2, 1]
+        for i, node in enumerate(self.tree.to_max_heap(self.root)):
+            assert_that(max_heap[i]).is_equal_to(node.value)
+
     def create_test_root(self):
         root = Node(4)
         root.left, root.right = Node(2), Node(6)
