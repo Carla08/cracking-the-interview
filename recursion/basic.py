@@ -40,8 +40,3 @@ def find_magic_index(lst, start, end):
             return find_magic_index(lst, mid + 1, end)
         elif n > mid:
             return find_magic_index(lst, start, mid - 1)
-
-
-
-
-

@@ -1,5 +1,6 @@
 from data_structures.trees.tree import Tree
 from data_structures.trees.binary_tree_node import Node
+from data_structures.trees.tree_traversals import inorder, preorder
 
 class BinarySearchTree(Tree):
 
@@ -101,12 +102,11 @@ class BinarySearchTree(Tree):
 
     def _get_node_childs_values(self, node):
         if node.right and node.left:
-            childs = [node.right, node.left]
+            return [node.right, node.left]
         elif not node.right and not node.left:
-            childs = []
+            return []
         else:
-            childs = [node.right or node.left]
-        return [] if not childs else [child.value for child in childs]
+            return [node.right or node.left]
 
     def find_parent(self, value, node=None):
         node = self.root if not node else node
@@ -128,6 +128,61 @@ class BinarySearchTree(Tree):
             yield from self.to_max_heap(node.right)
             yield node
             yield from self.to_max_heap(node.left)
+
+    def find_lowest_common_ancestor(self, node_a, node_b):
+        """
+        Return the root of a subtree which both node A and B exist. This subtree
+        should be the smallest subtree possible.
+        """
+        def find_lca_helper(node):
+            if not node:
+                return
+            elif node == node_a or node == node_b:
+                return node
+            else:
+                node_left = find_lca_helper(node.left)
+                node_right = find_lca_helper(node.right)
+                return node if node_left and node_right else node_left or node_right
+
+        return find_lca_helper(self.root)
+
+    def serialize(self):
+        inorder_lst = [n.value for n in inorder(self.root)]
+        preorder_lst = [n.value for n in preorder(self.root)]
+        return {'inorder': inorder_lst, 'preorder': preorder_lst}
+
+    @staticmethod
+    def deserialize(inorder_lst, preorder_lst):
+        # inorder : 1,2,3,4,5,6,7
+        # preorder: 4,2,1,3,6,5,7
+        def reconstruct(in_lst, pre_lst, prev_val):
+            if not pre_lst:
+                return
+
+            lft_inodr, right_inodr = [], []
+            lft_preord, right_preord = [], []
+            n = pre_lst[0]
+            node = Node(n)
+            for in_n, pre_n in zip(in_lst, pre_lst):
+                if in_n < n:
+                    lft_inodr.append(in_n)
+                if in_n > n:
+                    right_inodr.append(in_n)
+                if pre_n < n:
+                    lft_preord.append(pre_n)
+                if pre_n > n:
+                    right_preord.append(pre_n)
+
+            node.left = reconstruct(lft_inodr, lft_preord, n)
+            node.right = reconstruct(right_inodr, right_preord, n)
+
+            return node
+
+        return BinarySearchTree(reconstruct(inorder_lst, preorder_lst, preorder_lst[0]))
+
+
+
+
 
 
 

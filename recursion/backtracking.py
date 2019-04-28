@@ -18,6 +18,7 @@ def get_all_binary(num_digits: int, output: str):
         yield from get_all_binary(num_digits - 1, output + '0')
         yield from get_all_binary(num_digits - 1, output + '1')
 
+
 def dice_sum(num_dices, _sum, combination):
     """
     num_dices = 2
@@ -32,18 +33,19 @@ def dice_sum(num_dices, _sum, combination):
     if not num_dices:
         return combination
     else:
-        for i in range (1,7):  # 1,2,3,4,5,6
+        for i in range(1, 7):  # 1,2,3,4,5,6
             # choose
             combination.append(i)
 
             # explore
-            _combination = dice_sum(num_dices-1, _sum, combination)
+            _combination = dice_sum(num_dices - 1, _sum, combination)
             if sum(_combination) == _sum and num_dices == 1:
                 print(_combination)
 
-            #un-choose
+            # un-choose
             combination.remove(i)
         return combination
+
 
 def get_power_set(_set, subset):
     # for each element in the set, create a subset where it is missing.
@@ -62,3 +64,33 @@ def get_power_set(_set, subset):
         _set.add(current)
         subset.remove(current)
 
+
+num_char_map = {1: ['1'],
+                2: ['a', 'b', 'c'],
+                3: ['d', 'e', 'f'],
+                4: ['g', 'h', 'i'],
+                5: ['j', 'k', 'l'],
+                6: ['m', 'n', 'o'],
+                7: ['p', 'r', 's'],
+                8: ['t', 'u', 'v'],
+                9: ['w', 'x', 'y'],
+                0: ['0']}
+
+
+def telephone_to_word(nums, word):
+    if not nums:
+        print(word)
+    else:
+        num = nums[0]
+        del nums[0]
+        chars = num_char_map[num]
+        for char in chars:
+            # choose
+            word += char
+            # explore
+            telephone_to_word(nums, word)
+            # unchoose
+            word = word[:-1]
+        nums.insert(0, num)
+
+telephone_to_word([8,1,2,7,1,7,4,1,7,1], '')

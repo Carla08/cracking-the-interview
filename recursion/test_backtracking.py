@@ -1,5 +1,5 @@
 import unittest
-from recursion.backtracking import get_power_set, get_all_binary, dice_sum
+from recursion.backtracking import get_power_set, get_all_binary, dice_sum, telephone_to_word
 from assertpy import assert_that
 
 class TestBacktracking(unittest.TestCase):
@@ -26,3 +26,6 @@ class TestBacktracking(unittest.TestCase):
         # watch the magic. I figured out this problem by myself. It's pretty sick.
         # yeah.
         dice_sum(dices, _sum, [])
+
+    def test_telephone_to_word(self):
+        word = "toocool"

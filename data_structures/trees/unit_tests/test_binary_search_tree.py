@@ -40,6 +40,20 @@ class TestTreeTraversals(unittest.TestCase):
         for i, node in enumerate(self.tree.to_max_heap(self.root)):
             assert_that(max_heap[i]).is_equal_to(node.value)
 
+    def test_find_lowest_common_ancestor(self):
+        node_a, node_b = Node(2), Node(5)
+        expected_lca = Node(4)
+        result_lca = self.tree.find_lowest_common_ancestor(node_a, node_b)
+        assert_that(result_lca).is_equal_to(expected_lca)
+
+    def test_reconstruct_tree(self):
+        serialized_tree = self.tree.serialize()
+        inorder_lst, preorder_lst = serialized_tree['inorder'], serialized_tree['preorder']
+        reconstructed_tree = BinarySearchTree.deserialize(inorder_lst, preorder_lst)
+        inorder_order = [1, 2, 3, 4, 5, 6, 7]
+        for i, node in enumerate(inorder(reconstructed_tree.root)):
+            assert_that(inorder_order[i]).is_equal_to(node.value)
+
     def create_test_root(self):
         root = Node(4)
         root.left, root.right = Node(2), Node(6)
